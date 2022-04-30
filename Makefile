@@ -1,13 +1,16 @@
 .PHONY: clean publish test docs
 
+PYTHON ?= python
+PYTEST ?= pytest
+
 dist:
-	python -m build
+	$(PYTHON) -m build
 
 publish :
 	twine upload dist/*.tar.gz dist/*.whl
 
 test:
-	pytest -v
+	$(PYTEST) -v
 	flake8
 	vermin toot
 
